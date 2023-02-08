@@ -1,3 +1,4 @@
+# 2-3
 import os
 import sys
 
@@ -7,7 +8,7 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QLabel, QWidget
 
 SCREEN_SIZE = [600, 450]
-hg = 15
+hg = 16
 dlt = hg / 10
 
 
@@ -51,12 +52,15 @@ class Example(QWidget):
         os.remove(self.map_file)
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_PageUp and self.spn < 25:
-            self.spn += 1
+        if event.key() == Qt.Key_PageUp and self.spn < 26:
+            self.spn += 4
             self.dlt = self.spn / 10
             print(self.spn)
         elif event.key() == Qt.Key_PageDown and self.spn >= 2:
-            self.spn -= 1
+            if self.spn <= 4:
+                self.spn -= 0.5
+            else:
+                self.spn -= 4
             self.dlt = self.spn / 10
             print(self.spn)
         elif event.key() == Qt.Key_Up:
